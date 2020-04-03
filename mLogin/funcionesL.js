@@ -37,7 +37,15 @@ $("#frmLogin").submit(function(e){
 
                 }else{
                     if($('#camcon').prop('checked')){
+                        $("#conn").val("");
+                        $("#reccn").val("");
                         $('#modalcontra').modal("show");
+                        $('#letter').removeClass('valid').addClass('invalid');
+                        $('#capital').removeClass('valid').addClass('invalid');
+                        $('#number').removeClass('valid').addClass('invalid');
+                        $('#length').removeClass('valid').addClass('invalid');
+                        $('#car').removeClass('valid').addClass('invalid');
+                        $('#con').removeClass('invalid').addClass('valid');
                     }
                     else{
                         $("#contentLogin").hide();
@@ -173,7 +181,6 @@ function cambiarPass(){
             $("#reccn").val("");
             $("#loginUsuario").val("");
             $("#loginContra").val("");
-            $('#camcon').click();
             $("#contentLogin").hide();
             $("#contentSistema").show();
             $("#modalcontra").modal("hide");
@@ -208,6 +215,7 @@ function cambiarPass(){
             alert("Error en metodo AJAX");
         },
     });
+    console.log(ncontra);
 }
 
 function generarcontra(){

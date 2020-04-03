@@ -1,4 +1,4 @@
-<? php 
+<?php 
 //conexion mysql
 include ("../conexion/conexionli.php");
 
@@ -19,6 +19,8 @@ $cadena = "UPDATE usuarios
                 nombre_usuario='$usuario' AND contra='$contra'";
 
 echo $ncontra;
+console.log($usuario);
+console.log($contra);
 $actualizar = mysqli_query($conexionLi, $cadena);
 
 //En caso de error imprime

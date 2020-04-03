@@ -11,15 +11,16 @@
       <form action="" id="frmcontra">
           <div class="modal-body" >
             <div class="row">
-              <div class="col-xs-4 col-ms-4 col-md-5 col-lg-5">
+              <div class="col-xs-4 col-ms-4 col-md-6 col-lg-6">
                     <label for="conn">Contraseña nueva:</label>
                     <input type="text" id="conn" class="form-control" placeholder="Escribir"  autofocus required>
                 </div>
-                <div class="col-xs-4 col-ms-4 col-md-5 col-lg-5">
+                <div class="col-xs-4 col-ms-4 col-md-6 col-lg-6">
                     <label for="reccn">Rectifica contraseña:</label>
                     <input type="text" id="reccn" class="form-control" placeholder="Escribir" onkeyup="comparepsw();" disabled required>
                 </div>
-                      <div id="pswd_info">
+                <br>
+                      <div id="pswd_info" class="col-xs-4 col-ms-4 col-md-12 col-lg-12">
                         <h4>La contraseña debería cumplir con los siguientes requerimientos:</h4>
                         <ul>
                             <li id="letter" class="invalid">Al menos debería tener <strong>una letra en minuscula</strong></li>
