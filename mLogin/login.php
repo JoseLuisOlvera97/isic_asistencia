@@ -1,6 +1,5 @@
 <div class="login-box" >
     <div class="login-box-body bordeLogin">
-
         <p class="tituloLogin">Sistema Control de Accesos</p>
         
         <form action="verificar_login.php" method="post" id="frmLogin" style="border-color:#40739e">
@@ -13,11 +12,17 @@
             <input type="password" id="loginContra" class="form-control" placeholder="Escribe la contraseña" required>
            
             </div>
-
                 <div class="col text-center">
                     <button   type="submit" class="btn btn-outline-dark active" id="btnIngresar" disabled>
                         <i class="fas fa-lock" id="icoLogin"></i>
                         Ingresar al sistema
+                    </button>
+                </div>
+                <br>
+                <div class="col text-center">
+                <input type="checkbox" checked data-toggle="toggle" data-size="sm" data-on="SI" data-off="NO" id="camcon">
+                        Actualizar contraseña
+                        <i class="fas fa-user-lock" id="icoLogin"></i>
                     </button>
                 </div>
         </form>
