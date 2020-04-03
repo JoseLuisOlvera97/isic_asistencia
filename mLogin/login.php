@@ -20,6 +20,13 @@
                         Ingresar al sistema
                     </button>
                 </div>
+                <br>
+                <div class="col text-center">
+                <input type="checkbox" checked data-toggle="toggle" data-size="sm" data-on="SI" data-off="NO" id="camcon">
+                        Actualizar contraseña
+                        <i class="fas fa-user-lock" id="icoLogin"></i>
+                    </button>
+                </div>
         </form>
     </div>
 </div>
