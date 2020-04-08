@@ -34,6 +34,7 @@
             </div>
           </div>
           <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"><i class="fa fa-eye" id="mostrar"></i></button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             <button type="button" class="btn btn-primary" onclick="generarcontra();">Generar contraseña</button>
             <button type="button" class="btn btn-primary" onclick="cambiarPass();" id="btnguardar" disabled>Guardar</button>

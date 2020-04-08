@@ -37,15 +37,7 @@ $("#frmLogin").submit(function(e){
 
                 }else{
                     if($('#camcon').prop('checked')){
-                        $("#conn").val("");
-                        $("#reccn").val("");
-                        $('#modalcontra').modal("show");
-                        $('#letter').removeClass('valid').addClass('invalid');
-                        $('#capital').removeClass('valid').addClass('invalid');
-                        $('#number').removeClass('valid').addClass('invalid');
-                        $('#length').removeClass('valid').addClass('invalid');
-                        $('#car').removeClass('valid').addClass('invalid');
-                        $('#con').removeClass('invalid').addClass('valid');
+                        camcondentro();
                     }
                     else{
                         $("#contentLogin").hide();
@@ -176,7 +168,7 @@ function cambiarPass(){
         dateType:"html",
         data:{usuario,contra, ncontra},
         success:function(respuesta){
-            alertify.success("<i class='fa fa-check fa-lg'></i>",1);
+            alertify.success("<i class='fa fa-check fa-lg'>Contraseña actualizada</i>",1);
             $("#conn").val("");
             $("#reccn").val("");
             $("#loginUsuario").val("");
@@ -454,3 +446,37 @@ function comparepsw(){
         $('#con').removeClass('valid').addClass('invalid');
     }
 }
+
+function camcondentro(){
+    $("#btnguardar").attr("disabled","disabled");
+    $("#conn").val("");
+    $("#reccn").val("");
+    $('#modalcontra').modal("show");
+    $('#letter').removeClass('valid').addClass('invalid');
+    $('#capital').removeClass('valid').addClass('invalid');
+    $('#number').removeClass('valid').addClass('invalid');
+    $('#length').removeClass('valid').addClass('invalid');
+    $('#car').removeClass('valid').addClass('invalid');
+    $('#con').removeClass('invalid').addClass('valid');
+}
+
+$(document).ready( function(){
+ 
+    $('#mostrar').click(function(){
+       if($(this).hasClass('fa-eye'))
+       {
+        $('#reccn').attr('type','password');
+        $('#conn').attr('type','password');
+        $('#mostrar').addClass('fa-eye-slash').removeClass('fa-eye');
+       }
+  
+       else
+       {
+       //Establecemos el atributo y valor
+       $('#reccn').removeAttr('type');
+       $('#conn').removeAttr('type');
+       $('#mostrar').addClass('fa-eye').removeClass('fa-eye-slash');
+       }
+        });
+  
+ });

@@ -94,7 +94,7 @@ function importarArchivo(){
     console.log(ruta);
     
     $.getJSON(ruta, function(data){
-        //for para decorre las propiedades
+        //for para recorre las propiedades
         for(tema in data){
 
             var nombre_tema       = data[tema].nombre_tema;
