@@ -517,4 +517,257 @@ function subirFoto(){
 // return false;
 }
 
+function abrirModalHorario(id, nombre, con, turno, Le, Ls, Me, Ms, Mie, Mis, Je, Js, Ve, Vs, Se, Ss, De, Ds){
+    $("#idPersona").val(id);
+    $("#txtTitularHorario").text("Horario de "+nombre);
+    $("#Nombre").val(nombre);
+    if (con == "Si") {
+        $("#realizar").val("Si");
+        $("#turno").val(turno);
+        $("#Lentrada").val(Le);
+        $("#Lsalida").val(Ls);
+        $("#Mentrada").val(Me);
+        $("#Msalida").val(Ms);
+        $("#Mientrada").val(Mie);
+        $("#Misalida").val(Mis);
+        $("#Jentrada").val(Je);
+        $("#Jsalida").val(Js);
+        $("#Ventrada").val(Ve);
+        $("#Vsalida").val(Vs);
+        $("#Sentrada").val(Se);
+        $("#Ssalida").val(Ss);
+        $("#Dentrada").val(De);
+        $("#Dsalida").val(Ds);
+        TurnoHorario();
+    } else {
+        $("#realizar").val("No");
+        $("#turno").val("Especial");
+        TurnoHor();
+    }
+    $("#modalHorario").modal("show");
+}
 
+function inputsHorarioDis(){
+    $("#Lentrada, #Lsalida, #Mentrada, #Msalida, #Mientrada, #Misalida, #Jentrada, #Jsalida, #Ventrada, #Vsalida").attr("disabled", "disabled");
+    $("#Sentrada, #Ssalida, #Dentrada, #Dsalida").attr("disabled", "disabled");
+}
+
+function GuardarHorario(){
+    var nom = $("#Nombre").val();
+    var res = $("#realizar").val();
+    var IdPersona = $("#idPersona").val();
+    var turno = $("#turno").val();
+    var Le = $("#Lentrada").val();
+    var Ls = $("#Lsalida").val();
+    var Me = $("#Mentrada").val();
+    var Ms = $("#Msalida").val();
+    var Mie = $("#Mientrada").val();
+    var Mis = $("#Misalida").val();
+    var Je = $("#Jentrada").val();
+    var Js = $("#Jsalida").val();
+    var Ve = $("#Ventrada").val();
+    var Vs = $("#Vsalida").val();
+    var Se = $("#Sentrada").val();
+    var Ss = $("#Ssalida").val();
+    var De = $("#Dentrada").val();
+    var Ds = $("#Dsalida").val();
+    if (res == 'No') {
+        $.ajax({
+            url:"../mDatosPersonales/guardarHorario.php",
+            type:"POST",
+            dateType:"html",
+            data:{IdPersona, turno, Le, Ls, Me, Ms, Mie, Mis, Je, Js, Ve, Vs, Se, Ss, De, Ds},
+            success:function(respuesta){
+                // console.log(respuesta);
+                alertify.success("<i class='fa fa-check fa-lg'></i> Horario Guardado", 2);
+                $("#modalHorario").modal("hide");
+                actividad  ="Se ha creado un horario para la persona "+nom;
+                var idUser=$("#inicioIdusuario").val();
+                log(actividad,idUser);
+                llenar_lista_DP();
+            },
+            error:function(xhr,status){
+                alert("Error en metodo AJAX"); 
+            },
+        });
+    } else {
+        $.ajax({
+            url:"../mDatosPersonales/actualizarHorario.php",
+            type:"POST",
+            dateType:"html",
+            data:{IdPersona, turno, Le, Ls, Me, Ms, Mie, Mis, Je, Js, Ve, Vs, Se, Ss, De, Ds},
+            success:function(respuesta){
+                // console.log(respuesta);
+                alertify.success("<i class='fa fa-check fa-lg'></i> Horario Actualizado", 2);
+                $("#modalHorario").modal("hide");
+                actividad  ="Se ha actualizado el horario para la persona "+nom;
+                var idUser=$("#inicioIdusuario").val();
+                log(actividad,idUser);
+                llenar_lista_DP();
+            },
+            error:function(xhr,status){
+                alert("Error en metodo AJAX"); 
+            },
+        });
+    }
+}
+
+function TurnoHorario(){
+    if ($("#turno").val() == "Especial") {
+        $("#Lentrada, #Lsalida, #Mentrada, #Msalida, #Mientrada, #Misalida, #Jentrada, #Jsalida, #Ventrada, #Vsalida").removeAttr("disabled");
+        $("#Sentrada, #Ssalida, #Dentrada, #Dsalida").removeAttr("disabled");
+        CalcularHoras();
+    }else if ($("#turno").val() == "Matutino") {
+        inputsHorarioDis()
+        CalcularHoras()
+    } else if ($("#turno").val() == "Vespertino") {
+        inputsHorarioDis()
+        CalcularHoras()
+    } else if ($("#turno").val() == "Nocturno") {
+        inputsHorarioDis()
+        $("#htotal").text("30");
+        $("#htotal").css('color', '#1e90ff');
+        $("#btnGuardarHorario").removeAttr('disabled');
+    }
+}
+
+function TurnoHor(){
+    if ($("#turno").val() == "Especial") {
+        $("#Lentrada, #Lsalida, #Mentrada, #Msalida, #Mientrada, #Misalida, #Jentrada, #Jsalida, #Ventrada, #Vsalida").removeAttr("disabled");
+        $("#Sentrada, #Ssalida, #Dentrada, #Dsalida").removeAttr("disabled");
+        $("#Lentrada, #Mentrada, #Mientrada, #Jentrada, #Ventrada, #Sentrada, #Dentrada").val("00:00");
+        $("#Lsalida, #Msalida, #Misalida, #Jsalida, #Vsalida, #Ssalida, #Dsalida").val("00:00");
+        $("#htotal").text("00");
+        CalcularHoras();
+    }else if ($("#turno").val() == "Matutino") {
+        inputsHorarioDis()
+        $("#Lentrada, #Mentrada, #Mientrada, #Jentrada, #Ventrada").val("06:00");
+        $("#Lsalida, #Msalida, #Misalida, #Jsalida, #Vsalida").val("12:00");
+        $("#Sentrada, #Dentrada").val("00:00");
+        $("#Ssalida, #Dsalida").val("00:00");
+        CalcularHoras()
+    } else if ($("#turno").val() == "Vespertino") {
+        inputsHorarioDis()
+        $("#Lentrada, #Mentrada, #Mientrada, #Jentrada, #Ventrada").val("12:00");
+        $("#Lsalida, #Msalida, #Misalida, #Jsalida, #Vsalida").val("18:00");
+        $("#Sentrada, #Dentrada").val("00:00");
+        $("#Ssalida, #Dsalida").val("00:00");
+        CalcularHoras()
+    } else if ($("#turno").val() == "Nocturno") {
+        inputsHorarioDis()
+        $("#Lentrada, #Mentrada, #Mientrada, #Jentrada, #Ventrada").val("18:00");
+        $("#Lsalida, #Msalida, #Misalida, #Jsalida, #Vsalida").val("00:00");
+        $("#Sentrada, #Dentrada").val("00:00");
+        $("#Ssalida, #Dsalida").val("00:00");
+        $("#htotal").text("30");
+        $("#htotal").css('color', '#1e90ff');
+        $("#btnGuardarHorario").removeAttr('disabled');
+    }
+}
+
+$("#turno").change(function(){
+    TurnoHor();
+});
+
+function CalcularHoras(){
+    var Le = $("#Lentrada").val();
+    var Ls = $("#Lsalida").val();
+    var aux1 = Le.split(":")[0];
+    var aux1_1 = Le.split(":")[1];
+    var aux2 = Ls.split(":")[0];
+    var aux2_1 = Ls.split(":")[1];
+    var Me = $("#Mentrada").val();
+    var Ms = $("#Msalida").val();
+    var aux3 = Me.split(":")[0];
+    var aux3_1 = Me.split(":")[1];
+    var aux4 = Ms.split(":")[0];
+    var aux4_1 = Ms.split(":")[1];
+    var Mie = $("#Mientrada").val();
+    var Mis = $("#Misalida").val();
+    var aux5 = Mie.split(":")[0];
+    var aux5_1 = Mie.split(":")[1];
+    var aux6 = Mis.split(":")[0];
+    var aux6_1 = Mis.split(":")[1];
+    var Je = $("#Jentrada").val();
+    var Js = $("#Jsalida").val();
+    var aux7 = Je.split(":")[0];
+    var aux7_1 = Je.split(":")[1];
+    var aux8 = Js.split(":")[0];
+    var aux8_1 = Js.split(":")[1];
+    var Ve = $("#Ventrada").val();
+    var Vs = $("#Vsalida").val();
+    var aux9 = Ve.split(":")[0];
+    var aux9_1 = Ve.split(":")[1];
+    var aux10 = Vs.split(":")[0];
+    var aux10_1 = Vs.split(":")[1];
+    var Se = $("#Sentrada").val();
+    var Ss = $("#Ssalida").val();
+    var aux11 = Se.split(":")[0];
+    var aux11_1 = Se.split(":")[1];
+    var aux12 = Ss.split(":")[0];
+    var aux12_1 = Ss.split(":")[1];
+    var De = $("#Dentrada").val();
+    var Ds = $("#Dsalida").val();
+    var aux13 = De.split(":")[0];
+    var aux13_1 = De.split(":")[1];
+    var aux14 = Ds.split(":")[0];
+    var aux14_1 = Ds.split(":")[1];
+
+    var hora_diff = aux2 - aux1;
+    var minuto_diff = aux2_1 - aux1_1;
+    var hora_diff1 = aux4 - aux3;
+    var minuto_diff1 = aux4_1 - aux3_1;
+    var hora_diff2 = aux6 - aux5;
+    var minuto_diff2 = aux6_1 - aux5_1;
+    var hora_diff3 = aux8 - aux7;
+    var minuto_diff3 = aux8_1 - aux7_1;
+    var hora_diff4 = aux10 - aux9;
+    var minuto_diff4 = aux10_1 - aux9_1;
+    var hora_diff5 = aux12 - aux11;
+    var minuto_diff5 = aux12_1 - aux11_1;
+    var hora_diff6 = aux14 - aux13;
+    var minuto_diff6 = aux14_1 - aux13_1;
+
+    horatotal = parseInt(hora_diff)+parseInt(hora_diff1)+parseInt(hora_diff2)+parseInt(hora_diff3)+parseInt(hora_diff4)+parseInt(hora_diff5)+parseInt(hora_diff6);
+    minutosTotal = parseInt(minuto_diff)+parseInt(minuto_diff1)+parseInt(minuto_diff2)+parseInt(minuto_diff3)+parseInt(minuto_diff4)+parseInt(minuto_diff5)+parseInt(minuto_diff6);
+    if (minutosTotal >= 60 && minutosTotal <= 119) {
+        horatotal += 1;
+    } else {
+        if (minutosTotal >= 120 && minutosTotal <= 179) {
+            horatotal += 2;
+        } else{
+            if (minutosTotal >= 180 && minutosTotal <= 239) {
+                horatotal += 3
+            } else {
+                if (minutosTotal >= 240 && minutosTotal <= 299) {
+                    horatotal += 4
+                } else {
+                    if (minutosTotal >= 300 && minutosTotal <= 359) {
+                        horatotal += 5
+                    } else {
+                        if (minutosTotal >= 360 && minutosTotal <= 419) {
+                            horatotal += 6
+                        } else {
+                            if (minutosTotal >= 420 && minutosTotal <= 479) {
+                                horatotal += 7
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    $("#htotal").text(horatotal);
+    if ((parseInt(hora_diff) < 0) || (parseInt(hora_diff1) < 0) || (parseInt(hora_diff2) < 0) || (parseInt(hora_diff3) < 0) || (parseInt(hora_diff4) < 0) || (parseInt(hora_diff5) < 0) || (parseInt(hora_diff6) < 0)) {
+        $("#htotal").css('color', '#ff4757');
+        $("#btnGuardarHorario").removeAttr('disabled');
+    } else {
+        if (horatotal >= 30) {
+            $("#htotal").css('color', '#1e90ff');
+            $("#btnGuardarHorario").removeAttr('disabled');
+        } else {
+            $("#htotal").css('color', '#ff4757');
+            $("#btnGuardarHorario").attr('disabled', 'disabled');
+        }
+    }
+}

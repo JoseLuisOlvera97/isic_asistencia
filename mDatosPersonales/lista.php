@@ -7,20 +7,41 @@ include'../funciones/calcularEdad.php';
 $varGral="-DP";
 
 $cadena = "SELECT
-                id_datos,
-                activo,
-                nombre,
-                ap_paterno,
-                ap_materno,
-                fecha_nac,
-                correo,
-                curp,
-                clave,
-                domicilio,
-                sexo,
-                id_ecivil
-            FROM
-                datos ORDER BY id_datos DESC";
+                datos.id_datos,
+                datos.activo,
+                datos.nombre,
+                datos.ap_paterno,
+                datos.ap_materno,
+                datos.fecha_nac,
+                datos.correo,
+                datos.curp,
+                datos.clave,
+                datos.domicilio,
+                datos.sexo,
+                datos.id_ecivil,
+                horarios.id_horario,
+                horarios.id_datos_persona,
+                horarios.turno,
+                horarios.l_entrada, 
+				horarios.l_salida, 
+				horarios.m_entrada, 
+				horarios.m_salida, 
+				horarios.mi_entrada, 
+				horarios.mi_salida, 
+				horarios.j_entrada, 
+				horarios.j_salida, 
+				horarios.v_entrada, 
+				horarios.v_salida,
+				horarios.s_entrada,
+				horarios.s_salida,
+				horarios.d_entrada,
+				horarios.d_salida
+            FROM 
+                datos
+            LEFT JOIN
+                horarios
+            ON datos.id_datos=horarios.id_datos_persona
+            ORDER BY id_datos DESC";
 $consultar = mysqli_query($conexionLi, $cadena);
 //$row = mysqli_fetch_array($consultar);
 
@@ -36,6 +57,7 @@ $consultar = mysqli_query($conexionLi, $cadena);
                 <th scope="col">Datos</th>
                 <th scope="col">Foto</th>
                 <th scope="col">Audio</th>
+                <th scope="col">Horario</th>
                 <th scope="col">Clave</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Ap. Paterno</th>
@@ -79,6 +101,23 @@ $consultar = mysqli_query($conexionLi, $cadena);
             $ecivil     = $row[11];
             $nCompleto  = $row[2].' '.$row[3].' '.$row[4];
             
+            $idPersona = $row[13];
+            $turno     = $row[14];
+            $Le        = $row[15];
+            $Ls        = $row[16];
+            $Me        = $row[17];
+            $Ms        = $row[18];
+            $Mie       = $row[19];
+            $Mis       = $row[20];
+            $Je        = $row[21];
+            $Js        = $row[22];
+            $Ve        = $row[23];
+            $Vs        = $row[24];
+            $Se        = $row[25];
+            $Ss        = $row[26];
+            $De        = $row[27];
+            $Ds        = $row[28];
+
             $sonido     ="El nombre completo de la persona es ".$nombre." ".$paterno." ".$materno." , registrado con la clave ".$clave;
 
             $foto       = '../fotos/'.$clave.'.jpg';
@@ -89,6 +128,16 @@ $consultar = mysqli_query($conexionLi, $cadena);
             }else{
                 $icoFoto="<i class='fas fa-times fa-lg'></i>";
                 $tFoto="No";
+            }
+            
+            if ($idPersona == $id){
+                $icoHorario="<i class='fas fa-user-tie'></i>";
+                $bot = "btn btn-outline-primary";
+                $con="Si";
+            }else{
+                $icoHorario="<i class='fas fa-user-clock'></i>";
+                $bot = "btn btn-outline-danger";
+                $con="No";
             }
 
             ?>
@@ -121,6 +170,11 @@ $consultar = mysqli_query($conexionLi, $cadena);
                     </button>
                 </td>
                 <td>
+                    <button <?php echo $dtnDesabilita?> type="button" class="horario btn <?php echo $bot?> btn-sm activo"  id="btnHorario <?php echo $varGral?><?php echo $n?>" onclick="abrirModalHorario('<?php echo $id?>','<?php echo $nCompleto?>','<?php echo $con?>','<?php echo $turno?>','<?php echo $Le?>','<?php echo $Ls?>','<?php echo $Me?>','<?php echo $Ms?>','<?php echo $Mie?>','<?php echo $Mis?>','<?php echo $Je?>','<?php echo $Js?>','<?php echo $Ve?>','<?php echo $Vs?>','<?php echo $Se?>','<?php echo $Ss?>','<?php echo $De?>','<?php echo $Ds?>')">
+                        <?php echo $icoHorario?>
+                    </button>
+                </td>
+                <td>
                     <label class="textoBase">
                         <?php echo $clave?>
                     </label>
@@ -149,6 +203,7 @@ $consultar = mysqli_query($conexionLi, $cadena);
                     <input value="<?php echo $chkValor?>" onchange="cambiar_estatus_DP(<?php echo $id?>,<?php echo $n?>)" class="toggle-two" type="checkbox" <?php echo $chkChecado?> data-toggle="toggle" data-onstyle="outline-success" data-width="60" data-size="sm" data-offstyle="outline-danger" data-on="<i class='fa fa-check'></i> Si" data-off="<i class='fa fa-times'></i> No" id="check<?php echo $n?>">
                 </td>
             </tr>
+            
         <?php
         $n++;
         }
@@ -163,6 +218,7 @@ $consultar = mysqli_query($conexionLi, $cadena);
                 <th scope="col">Datos</th>
                 <th scope="col">Foto</th>
                 <th scope="col">Audio</th>
+                <th scope="col">Horario</th>
                 <th scope="col">Clave</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Ap. Paterno</th>

@@ -426,3 +426,21 @@ a.article:hover {
     line-height:24px;
     color:#3a7d34;
 }
+
+.hTabla2{
+    background: #ced6e0;
+}
+
+.hTabla3{
+    background: #a4b0be;
+}
+.modal-lg {
+    max-width: 80%;
+}
+
+.htotales{
+    text-align: right;
+}
+.text-center{
+    text-align: center;
+}
