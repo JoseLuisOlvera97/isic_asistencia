@@ -124,7 +124,23 @@ $fecha=date("Y-m-d");
                 </section>
                 
                 <section id="Listado-EC" class="animated  fadeIn contenedor" style="display:none;"></section>
-            </div>       
+            </div>     
+            
+            <div class="container" id="crearTema">
+                <section id="guardar-CT" style="display:none;">
+                    <?php
+                        include'../mCrearTema/formGuardar.php';
+                    ?>
+                </section>
+
+                <section id="editar-CT" style="display:none;">
+                    <?php
+                        include'../mCrearTema/formEditar.php';
+                    ?>
+                </section>
+                
+                <section id="Listado-CT" class="animated  fadeIn contenedor" style="display:none;"></section>
+            </div> 
 
         </div>
 
@@ -143,6 +159,8 @@ $fecha=date("Y-m-d");
         <?php include'../modales/modalPDF.php'; ?>
     <!-- Modal de PDF -->
         <?php include'../modales/modalHorario.php'; ?>
+    <!-- Modal Importar Tema -->
+        <?php include'../modales/modalImportar.php'; ?>
 
     <!-- jQuery -->
     <script src="../plugins/jQuery/jquery-3.3.1.js"></script>   
@@ -155,6 +173,8 @@ $fecha=date("Y-m-d");
     <script src="../mLogin/funcionesL.js"></script> <!-- Login -->
     <script src="../mDatosPersonales/funcionesDP.js"></script> <!-- Datos Personales --> 
     <script src="../mEstadoCivil/funcionesEC.js"></script> <!-- Estado Civil -->
+    <script src="../mCrearTema/funcionesCT.js"></script> <!-- Crear Temas -->
+
     <!-- DataTables -->
     <script src="../plugins/dataTablesB4/js/jquery.dataTables.min.js"></script>
     <script src="../plugins/dataTablesB4/js/dataTables.bootstrap4.min.js"></script>
