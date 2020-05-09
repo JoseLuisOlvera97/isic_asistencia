@@ -44,8 +44,8 @@ $varGral="-CT";
                 </div>
 
                 <div class="col text-center">
-                    <button  type="button" class="btn btn-outline-success  activo btnEspacio" id="btnProbarG<?php echo $varGral?>">
-                        <i class='fas fa-caret-square-right fa-lg'></i>
+                    <button  type="button" class="btn btn-outline-success  activo btnEspacio" onclick="Probartema(), audio()" id="btnProbarG<?php echo $varGral?>">
+                        <i id="icoprob<?php echo $varGral?>" class='fas fa-caret-square-right fa-lg'></i>
                         Probar Tema
                     </button>
                 </div>

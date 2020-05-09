@@ -9,7 +9,7 @@ $varGral="-CT";
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="form-group">
                 <label for="enombreTema">Nombre:</label>
-                <input type="text" class="form-control " id="enombreTema" autofocus required>
+                <input type="text" class="form-control " id="enombreTema" disabled required>
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
@@ -46,8 +46,8 @@ $varGral="-CT";
                 </div>
 
                 <div class="col text-center">
-                    <button  type="button" class="btn btn-outline-success  activo btnEspacio" id="btnProbarA<?php echo $varGral?>">
-                        <i class='fas fa-caret-square-right fa-lg'></i>
+                    <button  type="button" class="btn btn-outline-success  activo btnEspacio" onclick="ProbartemaE(), audio()" id="btnProbarA<?php echo $varGral?>">
+                        <i id="icoprobb<?php echo $varGral?>" class='fas fa-caret-square-right fa-lg'></i>
                         Probar Tema
                     </button>
                 </div>

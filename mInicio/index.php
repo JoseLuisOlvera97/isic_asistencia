@@ -164,6 +164,8 @@ $fecha=date("Y-m-d");
 
     <!-- jQuery -->
     <script src="../plugins/jQuery/jquery-3.3.1.js"></script>   
+    <script src="../plugins/jQuery/jquery.timer.js"></script>
+    <script src="../plugins/jQuery/timer.jquery.json"></script>
     <!-- Bootstrap-4 -->
     <script src="../plugins/bootstrap-4.0.0/dist/js/bootstrap.js"></script> 
     <!-- Alertifyjs -->  

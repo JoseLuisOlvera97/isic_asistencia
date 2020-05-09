@@ -79,12 +79,12 @@ $consultar = mysqli_query($conexionLi, $cadena);
                     </button>
                 </td>
                 <td>
-                    <button <?php echo $dtnDesabilita?> type="button" class="exportar btn btn-outline-warning btn-sm activo" id="btnImprimir<?php echo $varGral?><?php echo $n?>" onclick="abrirModalPDF('<?php echo $id?>','../mDatosPersonales','Datos Personales')">
+                    <button <?php echo $dtnDesabilita?> type="button" class="exportar btn btn-outline-warning btn-sm activo" id="btnImprimir<?php echo $varGral?><?php echo $n?>" onclick="exportar('<?php echo $id?>')">
                                 <i class="fas fa-file-upload fa-lg"></i>
                     </button>
                 </td>
                 <td>
-                    <button <?php echo $dtnDesabilita?> type="button" class="ventana btn btn-outline-info btn-sm activo"  id="btnModal<?php echo $varGral?><?php echo $n?>" onclick="abrirModalDatos_DP('<?php echo $id?>','<?php echo $nombre?>','<?php echo $paterno?>','<?php echo $materno?>','<?php echo $fNac?>','<?php echo $edad?>','<?php echo $correo?>','<?php echo $curp?>','<?php echo $clave?>','<?php echo $domicilio?>','<?php echo $sexo?>','<?php echo $ecivil?>')">
+                    <button <?php echo $dtnDesabilita?> type="button" class="ventana btn btn-outline-info btn-sm activo"  id="btnModal<?php echo $varGral?><?php echo $n?>" onclick="AplicarTema(<?php echo $id?>,'enlace')">
                         <i class="fas fa-caret-square-right fa-lg"></i>
                     </button>
                 </td>
@@ -180,10 +180,10 @@ mysqli_close($conexionLi);
                           extend: 'excel',
                           text: "<i class='far fa-file-excel fa-lg' aria-hidden='true'></i> &nbsp;Exportar a Excel",
                           className: 'btn btn-outline-secondary btnEspacio',
-                          title:'Lista_temas_creados',
+                          title:'Lista_Temas',
                           id: 'btnExportar',
                           exportOptions: {
-                            columns:  [6,7,8,9,10],
+                            columns:  [0,4,5,6],
                           }
                         }
 

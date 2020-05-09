@@ -1,49 +1,36 @@
 <?php
-// Conexion mysqli
-include ("../conexion/conexionli.php");
 
-//Recibo valores con el metodo POST
-$clave     = trim($_POST['clave']);
-$nombre    = trim($_POST['nombre']);
-$apPaterno = trim($_POST['apPaterno']);
-$apMaterno = trim($_POST['apMaterno']);
-$fNac      = trim($_POST['fNac']);
-$correo    = trim($_POST['correo']);
-$curp      = trim($_POST['curp']);
-$domicilio = trim($_POST['domicilio']);
-$sexo      = trim($_POST['sexo']);
-$ecivil    = trim($_POST['ecivil']);
+include'../conexion/conexionli.php';
+
+//Variable de Nombre
+$varGral="-CT";
+
+$nombre = trim($_POST['nombre']);
+$colorL = trim($_POST['colorL']);
+$colorB = trim($_POST['colorB']);
+$colorBF = trim($_POST['colorBF']);
+$colorBD = trim($_POST['colorBD']);
+
 $activo    = 1;
 
 $fecha=date("Y-m-d"); 
 $hora=date ("H:i:s");
-
 //Inserto registro en tabla pacientes 
-$cadena = "INSERT INTO datos
-				(clave,
-				nombre,
-				ap_paterno, 
-				ap_materno, 
-				curp, 
-				fecha_nac, 
-				correo, 
-				domicilio, 
-				sexo, 
-				id_ecivil, 
+$cadena = "INSERT INTO temas
+				(nombre_tema,
+				color_letra, 
+				color_base, 
+				color_base_fuerte, 
+				color_borde, 
 				fecha_registro, 
 				hora_registro,
 				activo)
 			VALUES
-				('$clave',
-				'$nombre',
-				'$apPaterno', 
-				'$apMaterno', 
-				'$curp', 
-				'$fNac', 
-				'$correo', 
-				'$domicilio',
-				'$sexo',
-				'$ecivil',
+				('$nombre',
+				'$colorL',
+				'$colorB', 
+				'$colorBF', 
+				'$colorBD', 
 				'$fecha', 
 				'$hora',
 				$activo)";
