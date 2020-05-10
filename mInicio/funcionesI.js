@@ -119,6 +119,11 @@ function aplicarTema(id,validador){
             
             cssTema(h_sidebar,color_base,letra_color,color_borde);
 
+            $("#rColorL").val(letra_color);
+            $("#rColorB").val(color_base);
+            $("#rColorBF").val(h_sidebar);
+            $("#rColorBD").val(color_borde);
+
             if (validador!='login'){
                 relacionarTema(id);
                 var tema=dataArray.result.nombre_tema;

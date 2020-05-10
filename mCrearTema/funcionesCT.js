@@ -396,12 +396,29 @@ function exportar(id){
       });
 }
 
+function hoverin(color_letra,color_base,color_baseF,color_borde){
+    var idTema=$("#inicioIdTema").val();
+    $( "button.hover" ).hover(
+        function() {
+            cssTema(color_baseF,color_base,color_letra,color_borde);
+        }, function() {
+        var color_letra = $("#rColorL").val();
+        var color_base = $("#rColorB").val();
+        var color_base_fuerte = $("#rColorBF").val();
+        var color_borde = $("#rColorBD").val();
+
+        cssTema(color_base_fuerte, color_base, color_letra, color_borde);
+        }
+      );
+}
+
+
 function Probartema(id){
     var colorL = $("#colorLetra").val();
     var colorB = $("#colorBase").val();
     var colorBF = $("#colorBaseF").val();
     var colorBD = $("#colorBorde").val();
-    var idTema=$("#inicioIdTema").val()
+    var idTema=$("#inicioIdTema").val();
     cssTema(colorBF,colorB,colorL,colorBD);
     var time = 000;
     var n = 6;

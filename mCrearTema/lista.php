@@ -84,8 +84,8 @@ $consultar = mysqli_query($conexionLi, $cadena);
                     </button>
                 </td>
                 <td>
-                    <button <?php echo $dtnDesabilita?> type="button" class="ventana btn btn-outline-info btn-sm activo"  id="btnModal<?php echo $varGral?><?php echo $n?>" onclick="AplicarTema(<?php echo $id?>,'enlace')">
-                        <i class="fas fa-caret-square-right fa-lg"></i>
+                    <button <?php echo $dtnDesabilita?> type="button" class="hover ventana btn btn-outline-info btn-sm activo"  id="btnModal<?php echo $varGral?><?php echo $n?>" onmouseover="hoverin('<?php echo $color_letra?>','<?php echo $color_base?>','<?php echo $color_base_fuerte?>','<?php echo $color_borde?>')" onclick="AplicarTema(<?php echo $id?>,'enlace')">
+                                <i class="fas fa-caret-square-right fa-lg"></i>
                     </button>
                 </td>
                 <td>

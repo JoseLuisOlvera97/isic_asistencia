@@ -78,6 +78,12 @@ $fecha=date("Y-m-d");
                     <input type="hidden" id="inicioIdusuario">
                     <input type="hidden" id="inicioIdDato">
                     <input type="hidden" id="inicioIdTema">
+
+                    <input type="hidden" id="rColorL">
+                    <input type="hidden" id="rColorB">
+                    <input type="hidden" id="rColorBF">
+                    <input type="hidden" id="rColorBD">
+
                     <div class="col text-right">
                         <span  class="badge badge-secondary">
                         <label class="lead" id="titular">Programa de ejemplo</label>
