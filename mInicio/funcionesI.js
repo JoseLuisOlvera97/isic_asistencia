@@ -22,6 +22,10 @@ function ocultarSecciones(){
     $("#editar-CT").hide();
     $("#Listado-CT").hide();
     //USUARIOS
+    $("#usuarios").hide();
+    $("#guardar-US").hide();
+    $("#editar-US").hide();
+    $("#Listado-US").hide();
 }
 
 function verAsistencias(){
@@ -88,6 +92,19 @@ function verCrearTemas(){
 
 function verUsuarios(){
     ocultarSecciones();
+    $("#lblTitular").text("Usuarios");
+
+    $("#badgeInfo").text("Lista");
+    $("#editar-US").hide();
+    $("#guardar-US").hide();
+    $("#Listado-US").fadeIn();
+    $("#frmGuardar-US")[0].reset();
+    $("#frmActualizar-US")[0].reset();
+
+    $("#usuarios").show();
+    llenar_lista_US();
+    var idTema=$("#inicioIdTema").val()
+    aplicarTema(idTema,'otro');
 }
 
 

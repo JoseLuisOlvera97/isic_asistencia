@@ -148,6 +148,22 @@ $fecha=date("Y-m-d");
                 <section id="Listado-CT" class="animated  fadeIn contenedor" style="display:none;"></section>
             </div> 
 
+            <div class="container" id="usuarios">
+                <section id="guardar-US" style="display:none;">
+                    <?php
+                        include'../mUsuarios/formGuardar.php';
+                    ?>
+                </section>
+
+                <section id="editar-US" style="display:none;">
+                    <?php
+                        include'../mUsuarios/formEditar.php';
+                    ?>
+                </section>
+                
+                <section id="Listado-US" class="animated  fadeIn contenedor" style="display:none;"></section>
+            </div> 
+
         </div>
 
     </div>
@@ -167,6 +183,8 @@ $fecha=date("Y-m-d");
         <?php include'../modales/modalHorario.php'; ?>
     <!-- Modal Importar Tema -->
         <?php include'../modales/modalImportar.php'; ?>
+    <!-- Modal Permisos -->
+        <?php include'../modales/modalPermisos.php'; ?>
 
     <!-- jQuery -->
     <script src="../plugins/jQuery/jquery-3.3.1.js"></script>   
@@ -182,6 +200,7 @@ $fecha=date("Y-m-d");
     <script src="../mDatosPersonales/funcionesDP.js"></script> <!-- Datos Personales --> 
     <script src="../mEstadoCivil/funcionesEC.js"></script> <!-- Estado Civil -->
     <script src="../mCrearTema/funcionesCT.js"></script> <!-- Crear Temas -->
+    <script src="../mUsuarios/funcionesUS.js"></script> <!-- Usuarios -->
 
     <!-- DataTables -->
     <script src="../plugins/dataTablesB4/js/jquery.dataTables.min.js"></script>
@@ -219,6 +238,9 @@ $fecha=date("Y-m-d");
     <script>
         combo_ecivil();
         selectTwo();
+        combopersonas();
+        combopersonasu();
+        combotemas();
     </script>
 
     <script>
