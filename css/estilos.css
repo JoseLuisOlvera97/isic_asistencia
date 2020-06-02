@@ -464,3 +464,20 @@ a.article:hover {
     font-family: "Reloj digital";
     src: url("../expImpTemas/fonts/DJB Get Digital.ttf");
 }
+
+.naranja{
+    color: orangered;
+}
+.azul{
+    color: blue;
+}
+.rojo2{
+    color: red;
+}
+.verde2{
+    color: green;
+}
+.pers{
+    color: white;
+    background-color: black;
+}

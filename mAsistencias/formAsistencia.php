@@ -29,6 +29,8 @@ $varGral="-AS";
             <div class="form-group">
                 <label id="nombre-AS">
                 </label>
+                <label id="insidencia-AS">
+                </label>
             </div>
         </div>
     </div>

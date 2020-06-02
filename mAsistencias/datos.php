@@ -4,7 +4,7 @@ include ("../conexion/conexionli.php");
 
 include ("../funciones/calcularEdad.php");
 //Recibo valores con el metodo POST
-$valor = $_POST['cvetrabajador']	;
+$valor = $_POST['id_usuario']	;
 
 //seleccione registros tabla datos
 $cadena = "SELECT
@@ -20,7 +20,7 @@ $cadena = "SELECT
 			FROM
 				datos 
 			WHERE
-				clave = '$valor'";
+                id_datos = '$valor'";
 
 $actualizar = mysqli_query($conexionLi, $cadena);
 
@@ -34,7 +34,7 @@ while($row = mysqli_fetch_array($actualizar)) {
     $ecivil = $row[7];
     $curp = $row[8];
     //$datos = 'Nombre de usuario: ', $row[2].' '.$row[3].' '.$row[4].' '.$row[1].' '.CalculaEdad($fnac).' '.$row[6].' '.$row[7].' '.$row[8];
-    echo 'Nombre de usuario: ',$row[2].' '.$row[3].' '.$row[4], ' Clave: ',$row[1];
+    echo 'Nombre de usuario: ',$row[2].' '.$row[3].' '.$row[4], ' ,Clave: ',$row[1], ' ,Edad: ',$edad, ' ,correo: ', $correo, ' ,Curp: ', $curp;
 }
 
 print_r(mysqli_error($conexionLi));
