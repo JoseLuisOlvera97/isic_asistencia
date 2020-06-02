@@ -37,6 +37,9 @@ function verAsistencias(){
     $("#badgeInfo").text("Dezliza tú tarjeta");
     var idTema=$("#inicioIdTema").val()
     aplicarTema(idTema,'otro');
+    alertify.message("Bienvenido al registro de asistencias!",2);
+    mensaje = "Bienvenido al registro de asistencias";
+    switchSonido(mensaje);
 }
 
 function verDatosPersonales(){

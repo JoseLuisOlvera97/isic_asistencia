@@ -197,6 +197,7 @@ $fecha=date("Y-m-d");
     <!-- Funciones Propias -->
     <script src="funcionesI.js"></script> <!-- Inicio -->
     <script src="../mLogin/funcionesL.js"></script> <!-- Login -->
+    <script src="../mAsistencias/funcionesAS.js"></script> <!-- Asistencia -->
     <script src="../mDatosPersonales/funcionesDP.js"></script> <!-- Datos Personales --> 
     <script src="../mEstadoCivil/funcionesEC.js"></script> <!-- Estado Civil -->
     <script src="../mCrearTema/funcionesCT.js"></script> <!-- Crear Temas -->
@@ -241,6 +242,7 @@ $fecha=date("Y-m-d");
         combopersonas();
         combopersonasu();
         combotemas();
+        CrearReloj();
     </script>
 
     <script>

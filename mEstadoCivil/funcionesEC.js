@@ -21,24 +21,47 @@ $("#frmGuardar-EC").submit(function(e){
       }, function (isConfirm) {
         if (isConfirm) {
         setTimeout(function () {
-            swal.close();
             $.ajax({
-                url:"../mEstadoCivil/guardar.php",
+                url:"../mEstadoCivil/comprobar.php",
                 type:"POST",
                 dateType:"html",
                 data:{desc},
                 success:function(respuesta){
-                    console.log(respuesta);
-                    $("#guardar-EC").hide();
-                    llenar_lista_EC();
-                    $("#frmGuardar-EC")[0].reset();
-                    selectTwo();
-                    alertify.success("<i class='fa fa-save fa-lg'></i>", 2);
-                    $('#desc').focus();
-                    actividad  ="Se insertado un nuevo registro a la tabla "+nombreModulo_EC;
-                    var idUser=$("#inicioIdusuario").val();
-                    log(actividad,idUser);
-        
+                    if(respuesta == "Si"){
+                        swal({
+                            title: "Error!",
+                            text: "Ya existe un estado civil con el mismo nombre",
+                            type: "error",
+                            confirmButtonClass: "btn-dark",
+                            confirmButtonText: "Enterado"
+                        }, function (isConfirm) {
+                            alertify.message("Gracias!");
+                        });
+                    }else{
+                        swal.close();
+                        $.ajax({
+                            url:"../mEstadoCivil/guardar.php",
+                            type:"POST",
+                            dateType:"html",
+                            data:{desc},
+                            success:function(respuesta){
+                                console.log(respuesta);
+                                $("#guardar-EC").hide();
+                                llenar_lista_EC();
+                                $("#frmGuardar-EC")[0].reset();
+                                selectTwo();
+                                alertify.success("<i class='fa fa-save fa-lg'></i>", 2);
+                                $('#desc').focus();
+                                actividad  ="Se insertado un nuevo registro a la tabla "+nombreModulo_EC;
+                                var idUser=$("#inicioIdusuario").val();
+                                log(actividad,idUser);
+                        
+                            },
+                            error:function(xhr,status){
+                                alert("Error en metodo AJAX"); 
+                            },
+                        });   
+                    }
                 },
                 error:function(xhr,status){
                     alert("Error en metodo AJAX"); 
@@ -74,24 +97,46 @@ $("#frmActualizar-EC").submit(function(e){
       }, function (isConfirm) {
         if (isConfirm) {
         setTimeout(function () {
-            swal.close();
             $.ajax({
-                url:"../mEstadoCivil/actualizar.php",
+                url:"../mEstadoCivil/comprobar2.php",
                 type:"POST",
                 dateType:"html",
                 data:{id,desc},
                 success:function(respuesta){
-                    console.log(respuesta);
-                    llenar_lista_EC();
-                        $("#frmGuardar-EC")[0].reset();
-                        $("#frmActualizar-EC")[0].reset();
-                        alertify.success("<i class='fa fa-bolt fa-lg'></i>", 2);
-                    $("#btnCancelarG-EC , #btnCancelarA-EC").click();
-                    actividad  ="Se ha modificado un registro de la tabla "+nombreModulo_EC;
-                    var idUser=$("#inicioIdusuario").val();
-                    log(actividad,idUser);
-                    
-                    $('#desc').focus();
+                    if (respuesta == "Si"){
+                        swal({
+                            title: "Error!",
+                            text: "Ya existe un estado civil con el mismo nombre",
+                            type: "error",
+                            confirmButtonClass: "btn-dark",
+                            confirmButtonText: "Enterado"
+                        }, function (isConfirm) {
+                            alertify.message("Gracias!");
+                        });
+                    }else{
+                        swal.close();
+                        $.ajax({
+                            url:"../mEstadoCivil/actualizar.php",
+                            type:"POST",
+                            dateType:"html",
+                            data:{id,desc},
+                            success:function(respuesta){
+                                llenar_lista_EC();
+                                    $("#frmGuardar-EC")[0].reset();
+                                    $("#frmActualizar-EC")[0].reset();
+                                    alertify.success("<i class='fa fa-bolt fa-lg'></i>", 2);
+                                $("#btnCancelarG-EC , #btnCancelarA-EC").click();
+                                actividad  ="Se ha modificado un registro de la tabla "+nombreModulo_EC;
+                                var idUser=$("#inicioIdusuario").val();
+                                log(actividad,idUser);
+                                
+                                $('#desc').focus();
+                            },
+                            error:function(xhr,status){
+                                alert("Error en metodo AJAX"); 
+                            },
+                        });
+                    }
                 },
                 error:function(xhr,status){
                     alert("Error en metodo AJAX"); 
